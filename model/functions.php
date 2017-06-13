@@ -455,3 +455,8 @@ function showArchive($date, $fieldNameArray, $link) {
     echo '<tr><td>Total recettes :</td><td><td></td><td></td><td></td></td><td>' . $total . '</td></tr>';
     echo '</table>';
 }
+//find an object by Id
+function findById($id){
+    
+    return "this".$id;
+}
