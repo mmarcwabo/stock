@@ -456,7 +456,15 @@ function showArchive($date, $fieldNameArray, $link) {
     echo '</table>';
 }
 //find an object by Id
-function findById($id){
+function findFromKeyWord($keyWord, $table){
     
-    return "this".$id;
+    $sQuery="SELECT * FROM ".$table;
+    $dbCon = connectDb();
+    $pQuery = $dbCon->prepare($sQuery);
+    $pQuery->execute();
+    
+    
+    
+    
+    return "this".$keyWord;
 }
