@@ -462,6 +462,7 @@ function findFromKeyWord($keyWord, $table){
     $dbCon = connectDb();
     $pQuery = $dbCon->prepare($sQuery);
     $pQuery->execute();
+    //
     
     
     
