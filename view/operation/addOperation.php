@@ -21,7 +21,7 @@ if (!is_numeric($idproduit)) {
     <body>
         <div class="container">
             <div class="top">
-                <a href="#">
+                <a href="../produit/addProduit.php">
                     <strong>&laquo; Gestion des stock &laquo;</strong>
                 </a>
                 <span class="right">

@@ -16,7 +16,7 @@ include_once '../../model/functions.php';
     <body>
         <div class="container">
             <div class="top">
-                <a href="#">
+                <a href="addProduit.php">
                     <strong>&laquo; Gestion des stock &laquo;</strong>
                 </a>
                 <span class="right">
@@ -30,7 +30,7 @@ include_once '../../model/functions.php';
             <div class="row col-lg-12 col-md-12 col-sm-12">
                 <br/>
                 
-                <legend>Infos produit</legend>
+                <legend>Infos article</legend>
                 <span id="" class="box" style="background-color:white;">
                     <h2><?php echo getFieldFromAnyElse("produit", "idproduit", $_GET['idProduit'], "denomination"); ?></h2>
                     <p>Photo : </p>

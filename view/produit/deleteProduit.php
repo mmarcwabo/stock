@@ -21,7 +21,7 @@ include_once '../../model/functions.php';
     <body>
         <div class="container">
             <div class="top">
-                <a href="#">
+                <a href="addProduit.php">
                     <strong>&laquo; Gestion des stock &laquo;</strong>
                 </a>
                 <span class="right">
@@ -53,7 +53,7 @@ include_once '../../model/functions.php';
                     <legend>Produits en stock...</legend>
                     <span id="msg" style="color:green;"><br/></span>
                         <?php
-                        $fieldNameArray = ['Libellé', 'Prix', 'Quantité', 'Description', 'Action'];
+                        $fieldNameArray = ['Article', 'Prix', 'Quantité', 'Description', 'Action'];
                         showProduit($fieldNameArray, 'denomination');
                         ?>
                 </div>

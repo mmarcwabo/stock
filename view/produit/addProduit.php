@@ -20,9 +20,10 @@ $qu = (isset($_GET['qu'])) ? $_GET['qu'] : "";
     <body>
         <div class="container">
             <div class="top">
-                <a href="#">
+                <a href="addProduit.php">
                     <strong>&laquo; Gestion des stock &laquo;</strong>
                 </a>
+                <input type="text" name="typeahead" class="typeahead tt-query" autocomplete="off" placeholder="Rechercher article...">
                 <span class="right">
                     <a href="#" target="_blank"></a>
                     <?php echo showExitLink("../../"); ?>
@@ -34,12 +35,12 @@ $qu = (isset($_GET['qu'])) ? $_GET['qu'] : "";
             <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
                     <br/>
-                    <legend>Ajouter nouveau produit</legend>
+                    <legend>Ajouter nouvel article</legend>
                     <span id="msg" style="background-color:white;"><?php echo (isset($_GET['param'])) ? $_GET['param'] : ""; ?></span>
 
                     <form role="form" method="POST" action="../../control/produit.php?action=add">
                         <div class="form-group">
-                            <label for="denomination">Libellé : </label>
+                            <label for="denomination">Article : </label>
                             <input class="form-control" type="text" name="denomination" value="<?php echo $den; ?>" placeholder="Saisir libellé" />
                         </div>
                         <div class="form-group">
@@ -57,15 +58,15 @@ $qu = (isset($_GET['qu'])) ? $_GET['qu'] : "";
                             <label for="description">Description : </label>
                             <textarea name="description" class="form-control"  rows="3" cols="15" value="<?php echo $des; ?>"></textarea>
                         </div>
-                        <button class="btn btn-success" type="submit" name="submit">Ajouter produit</button>
+                        <button class="btn btn-success" type="submit" name="submit">Ajouter article</button>
                     </form>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-9">
                     <?php echo "<br>"; ?>
-                    <legend>Produits en stock...</legend>
+                    <legend>Articles en stock...</legend>
                     <?php
                     include '../../model/functions.php';
-                    $fieldNameArray = ['Libellé', 'Prix[$]', 'Quantité', 'Description', 'Action', '<a href="../journal/">Journal</a>'];
+                    $fieldNameArray = ['Article', 'Prix[$]', 'Quantité', 'Description', 'Action', '<a href="../journal/">Journal</a>'];
                     showProduit($fieldNameArray, 'denomination');
                     ?>
                 </div>
@@ -73,13 +74,20 @@ $qu = (isset($_GET['qu'])) ? $_GET['qu'] : "";
 
         </div>
         <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="../../js/jquery.min.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                //Ajax saving
-                $("#msg").show();
-                $("#msg").delay(5000).fadeOut(300);
-            });
-        </script>
-    </body>  
+		  <script type="text/javascript" src="../../js/jquery.min.js"></script>
+		  <script type="text/javascript" src="../../js/typeahead.min.js"></script>
+		  <script type="text/javascript">
+		  $(document).ready(function () {
+			//Ajax saving
+			$("#msg").show();
+			$("#msg").delay(5000).fadeOut(300);
+			//Ajax Search activation...
+			$('input.typeahead').typeahead({
+			  name: 'typeahead',
+			  remote:'../../app/search/search.php?key=%QUERY',
+			  limit : 10
+			});
+		  });
+		  </script>
+    </body>
 </html>

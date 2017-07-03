@@ -31,5 +31,5 @@ function isAdmin() {
 
 //Affiche un lien de deconnexion à l'application
 function showExitLink($path) {
-    return "<a href='" . $path . "index.php'>Quitter le programme</a>";
+    return "<span class='link link-danger'><a href='" . $path . "index.php'>X</a></span>";
 }

@@ -391,6 +391,55 @@ function showJournal($fieldNameArray, $link) {
     echo '</table>';
 }
 
+//Journal des achats
+function showJournalS($fieldNameArray, $link) {
+    $sQuery = "SELECT * FROM produit,stock, operation WHERE produit.idproduit = stock.produit_idproduit AND produit.idproduit = operation.produit_idproduit AND DATE_FORMAT(operation.date, '%Y-%m-%d')=? AND operation.type = ?";
+    $numRow = 1;
+    $total = 0;
+    $dbCon = connectDb();
+    $pQuery = $dbCon->prepare($sQuery);
+    $pQuery->execute(array(date('Y-m-d'), "entree"));
+
+    $fieldArray = ['denomination', 'quantite', 'description'];
+    if ($pQuery->rowCount() < 1) {
+        echo "Aucun achat effectuée...";
+        exit;
+    }
+    echo '<table class="table table-striped">';
+    foreach ($fieldNameArray as $field) {
+        echo '<th>' . $field . '</th>';
+    }
+    while ($data = $pQuery->fetch()) {
+
+        echo '<tr>';
+        echo '<td>' . $numRow . '</td>';
+        foreach ($fieldArray as $field) {
+
+            if ($data[$field] == $data[$link]) {
+                $addLeftLinkTag = '<a href="../produit/details.php?idProduit=';
+                $addLeftLinkTag .= $data['idproduit'];
+                ///$idproduit = $data['idproduit'];
+                $addLeftLinkTag .= '">';
+                $addRightLinkTag = '</a>';
+                $Link = "";
+                $Link .= $addLeftLinkTag;
+                $Link .= $data[$field];
+                $Link .= $addRightLinkTag;
+                echo "<td>" . $Link . "</td>";
+            } else {
+                echo '<td>' . $data[$field] . '</td>';
+            }
+        }
+        echo '<td>' . $data['quantite'] * $data['prix']  * (9/10) . '</td></tr>';
+        $numRow++;
+        $total += $data['quantite'] * $data['prix'] * (9/10) ;
+    }
+
+    echo '<tr><td>Total dépenses :</td><td><td></td><td></td><td></td></td><td>' . $total . '</td></tr>';
+    echo '</table>';
+}
+
+
 //Archives
 //Show
 function showDates() {
@@ -407,7 +456,7 @@ function showDates() {
     }
 }
 
-//Sililaire à showJournal...
+//Archives des ventes...
 function showArchive($date, $fieldNameArray, $link) {
     $sQuery = "SELECT * FROM produit,stock, operation WHERE produit.idproduit = stock.produit_idproduit AND produit.idproduit = operation.produit_idproduit AND DATE_FORMAT(operation.date, 'Le %d-%m-%Y')= ? AND operation.type = ?";
     $numRow = 1;
@@ -455,17 +504,54 @@ function showArchive($date, $fieldNameArray, $link) {
     echo '<tr><td>Total recettes :</td><td><td></td><td></td><td></td></td><td>' . $total . '</td></tr>';
     echo '</table>';
 }
-//find an object by Id
-function findFromKeyWord($keyWord, $table){
-    
-    $sQuery="SELECT * FROM ".$table;
+
+//Archives des achats...
+function showArchiveS($date, $fieldNameArray, $link) {
+    $sQuery = "SELECT * FROM produit,stock, operation WHERE produit.idproduit = stock.produit_idproduit AND produit.idproduit = operation.produit_idproduit AND DATE_FORMAT(operation.date, 'Le %d-%m-%Y')= ? AND operation.type = ?";
+    $numRow = 1;
+    $total = 0;
     $dbCon = connectDb();
     $pQuery = $dbCon->prepare($sQuery);
-    $pQuery->execute();
-    //
-    
-    
-    
-    
-    return "this".$keyWord;
+    $pQuery->execute(array($date ,"entree"));
+
+    $fieldArray = ['denomination', 'quantite', 'description'];
+    if ($pQuery->rowCount() < 1) {
+        echo "Aucune vente effectuée...";
+        exit;
+    }
+    echo "<legend>Achats effectués ".$date."</legend>";
+    echo '<table class="table table-striped table-responsive">';
+    foreach ($fieldNameArray as $field) {
+        echo '<th>' . $field . '</th>';
+    }
+    while ($data = $pQuery->fetch()) {
+
+        echo '<tr>';
+        echo '<td>' . $numRow . '</td>';
+        foreach ($fieldArray as $field) {
+
+            if ($data[$field] == $data[$link]) {
+                $addLeftLinkTag = '<a href="../produit/details.php?idProduit=';
+                $addLeftLinkTag .= $data['idproduit'];
+                ///$idproduit = $data['idproduit'];
+                $addLeftLinkTag .= '">';
+                $addRightLinkTag = '</a>';
+                $Link = "";
+                $Link .= $addLeftLinkTag;
+                $Link .= $data[$field];
+                $Link .= $addRightLinkTag;
+                echo "<td>" . $Link . "</td>";
+            } else {
+                echo '<td>' . $data[$field] . '</td>';
+            }
+        }
+        echo '<td>' . $data['quantite'] * $data['prix'] * (9/10) . '</td></tr>';
+        $numRow++;
+        $total += $data['quantite'] * $data['prix'] * (9/10) ;
+    }
+
+    echo '<tr><td>Total depenses :</td><td><td></td><td></td><td></td></td><td>' . $total . '</td></tr>';
+    echo '</table>';
 }
+
+

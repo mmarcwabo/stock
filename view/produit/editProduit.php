@@ -14,7 +14,7 @@ if (!is_numeric($idproduit)) {
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Modifier produit</title>
+        <title>Modifier article</title>
         <link rel="stylesheet" type="text/css" href="../../css/bootstrap-theme.css" />
         <link rel="stylesheet" type="text/css" href="../../css/bootstrap.css"/>
         <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
@@ -22,7 +22,7 @@ if (!is_numeric($idproduit)) {
     <body>
         <div class="container">
             <div class="top">
-                <a href="#">
+                <a href="addProduit.php">
                     <strong>&laquo; Gestion des stock &laquo;</strong>
                 </a>
                 <span class="right">
@@ -36,13 +36,13 @@ if (!is_numeric($idproduit)) {
             <div class="row col-lg-12 col-md-12 col-sm-12">
                 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                     <br/>
-                    <legend>Modifier produit</legend>
+                    <legend>Modifier article</legend>
                     <span id="msg" class="box" style="background-color:white;">
                         <?php echo (isset($_GET['param'])) ? $_GET['param'] : "<p style='color:green'>Saisissez les nouvelles informations ici...</p>"; ?></span>
 
                     <form role="form" method="POST" action="../../control/produit.php?action=edit&idproduit=<?php echo $idproduit; ?>">
                         <div class="form-group">
-                            <label for="denomination">Libellé : </label>
+                            <label for="denomination">Article : </label>
                             <input class="form-control" type="text" name="denomination" value="<?php echo $produit['denomination']; ?>" placeholder="Saisir libellé" /><br/>
                         </div>
                         <div class="form-group">
@@ -53,13 +53,13 @@ if (!is_numeric($idproduit)) {
                             <label for="description">Description : </label>
                             <input  class="form-control" name="description" type="text" value="<?php echo $produit['description']; ?>"/>
                         </div>
-                        <button type="submit" class="btn btn-primary"  name="submit">Modifier produit</button>
+                        <button type="submit" class="btn btn-primary"  name="submit">Modifier article</button>
                     </form>
                 </div>
                 <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 ">
                     <br/>
                     <?php
-                    $fieldNameArray = ['Libellé', 'Prix[$]', 'Quantité', 'Description', 'Action'];
+                    $fieldNameArray = ['Article', 'Prix[$]', 'Quantité', 'Description', 'Action'];
                     showProduit($fieldNameArray, 'denomination');
                     ?>
                 </div>

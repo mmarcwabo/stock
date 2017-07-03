@@ -8,8 +8,9 @@ and open the template in the editor.
     Author     : Marcellin DBFX
 */
 body{
-background-image: url('../images/bg.png');
-background-repeat: repeat-x;
+	background-image: url('../images/bg.png');
+	background-repeat: repeat-x;
+	font-size: 1.6em;
 }
 .top{
 	font-family: Arial, sans-serif;
@@ -76,7 +77,7 @@ span a{
     color: #337ab7;   
 }
 #msg{
-    font-family: Maiandra GD;
+    font-family: Arial;
     font-size: 18px;
     font-weight: bold;
 }
@@ -88,4 +89,55 @@ span a{
     .body{
         font-size: 44px;
     }
+}
+
+
+/*
+Search box design
+forked from https://codeforgeek.com
+*/
+
+.typeahead, .tt-query, .tt-hint {
+	border: 1px solid #CCCCCC;
+	border-radius: 5px;
+	font-size: 20px;
+	height: 34px;
+	line-height: 30px;
+	outline: medium none;
+	padding: 3px 5px;
+	width: 396px;
+	margin: 2px;
+}
+.typeahead {
+	background-color: #FFFFFF;
+}
+.typeahead:focus {
+	border: 2px solid #0097CF;
+}
+.tt-query {
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+}
+.tt-hint {
+	color: #999999;
+}
+.tt-dropdown-menu {
+	background-color: #FFFFFF;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 0px;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	margin-top: 12px;
+	padding: 8px 0;
+	width: 422px;
+}
+.tt-suggestion {
+	font-size: 24px;
+	line-height: 24px;
+	padding: 3px 20px;
+}
+.tt-suggestion.tt-is-under-cursor {
+	background-color: #0097CF;
+	color: #FFFFFF;
+}
+.tt-suggestion p {
+	margin: 0;
 }

@@ -19,7 +19,7 @@ session_destroy();
                 </a>
                 <span class="right">
                     <a href="#" target="_blank"></a>
-                    <?php echo showExitLink("../../"); ?>
+                    <?php //echo showExitLink("../../"); ?>
 
                 </span>
             </div>
