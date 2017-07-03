@@ -1,19 +1,5 @@
 Gestion de stock
 
-Je recommande que tu utilise xampp comme serveur.
-Dans xampp, les fichiers de l'application, il faut les placer dans le dossier htdocs.
 
-Le script de la bd est dans le dossier bd.
-
-Crée un raccourcis sur le bureau du script batch de demarrage de l'application.
-Changer d'icone afin de le rendre plus convivial...
-
-Umuoneshe ma billy zayo, utilisation ya phone, tablette...
-
-Autre chose debrouille toi.
-
-Le gars s'appelle
-Emile 0970600776
-Peace!
 
  
